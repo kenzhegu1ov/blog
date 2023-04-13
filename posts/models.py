@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Post(models.Model):
-    image = models.ImageField()
+    image = models.ImageField(blank=True, null=True)
     title = models.CharField(max_length=255)
     description = models.TextField()
     rate = models.FloatField()
