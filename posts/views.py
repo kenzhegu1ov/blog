@@ -1,14 +1,15 @@
 from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
-def first_view(request):
-    if request.method == 'GET':
-        return HttpResponse('Its first view')
 
-def redirect_to_youtube(request):
-    if request.method == 'GET':
-        return redirect("https://youtube.com/")
 
-def redirect_to_google(request):
+
+def main_page_view(request):
     if request.method == 'GET':
-        return redirect("https://google.com/")
+        return render(request, 'layouts/index.html')
+
+
+def posts_view(request):
+    if request.method == "GET":
+        return render(request, 'posts/posts.html')
+

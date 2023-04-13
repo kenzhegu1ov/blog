@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from posts.views import first_view, redirect_to_youtube, redirect_to_google
+from posts.views import main_page_view, posts_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', first_view),
-    path('youtube/', redirect_to_youtube),
-    path('google/', redirect_to_google)
+    path('', main_page_view),
+    path('posts/', posts_view)
+
 ]
