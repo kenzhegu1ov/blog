@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
+from posts.models import Post
+
 
 # Create your views here.
-
 
 
 def main_page_view(request):
@@ -11,5 +12,10 @@ def main_page_view(request):
 
 def posts_view(request):
     if request.method == "GET":
-        return render(request, 'posts/posts.html')
+        posts = Post.objects.all()
 
+        context = {
+            'posts': posts
+        }
+
+        return render(request, 'posts/posts.html', context=context)
