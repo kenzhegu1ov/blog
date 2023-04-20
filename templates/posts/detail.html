@@ -2,6 +2,7 @@
 
 {% block content %}
     <div class = "post_block">
+    <img src="media/{{ post.image }}" alt="lol">
         <div class = "info">
             <h1>{{ post.title }}</h1>
             <h4>{{ post.description }}</h4>
@@ -10,6 +11,13 @@
                 <h5>Created date: {{ post.created_date }}</h5>
                 <h5>Modified date: {{ post.modified_date }}</h5>
             </div>
+        </div>
+        <div class="comments">
+            {% for comment in comments %}
+                <div class="comment_block">
+                    <h5>{{ comment.text }}</h5>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
