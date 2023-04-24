@@ -1,4 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
+
+from posts.forms import PostCreateForm
 from posts.models import Post
 
 
@@ -30,3 +32,12 @@ def post_detail_view(request, id):
             'comments': post.comment_set.all()
         }
         return render(request, 'posts/detail.html', context=context)
+
+
+def post_create_view(request):
+    if request.method == 'GET':
+        context = {
+            'form': PostCreateForm
+        }
+        return render(request, 'posts/create.html', context=context)
+
