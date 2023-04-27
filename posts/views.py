@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 
 from posts.forms import PostCreateForm
 from posts.models import Post
@@ -41,3 +41,19 @@ def post_create_view(request):
         }
         return render(request, 'posts/create.html', context=context)
 
+    if request.method == 'POST':
+        data, files = request.POST, request.FILES
+        form = PostCreateForm(data, files)
+
+        if form.is_valid():
+            Post.objects.create(
+                image=form.cleaned_data.get('image'),
+                title=form.cleaned_data.get('title'),
+                description=form.cleaned_data.get('description'),
+                rate=form.cleaned_data.get('rate')
+            )
+            return redirect('/posts/')
+
+        return render(request, 'posts/create.html', context={
+            'form': form
+        })
